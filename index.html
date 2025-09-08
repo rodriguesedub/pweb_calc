@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <style>
+            .inputc {
+                background-color: #eee;
+                border: #ccc 1px  solid;
+                width: 3em;
+                padding: 10px;
+            }
+
+            button{
+                background-color: #ff8000;
+                width: 37px;
+                height: 37px;
+                font-size: 14px;
+                color: white;
+            }
+
+            .buttonLimp {
+                width: 50px;
+                font-size: 10px;
+            }
+
+            button:active {
+                background-color: #ee5000;
+            }
+
+            .resq{
+                background-color: white;
+                width: 10em;
+                height: 37px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--Soma-->
+        <input id="sa" placeholder="valor a">
+        <input id="sb" placeholder="valor b">
+        <button onclick="soma()">+</button>
+        <input id="sr">
+        <button onclick="limpa()">Limpar</button><br>
+
+        <!--Sub-->
+        <input id="sasub" placeholder="valor a">
+        <input id="sbsub" placeholder="valor b">
+        <button onclick="sub()">-</button>
+        <input id="srsub">
+        <button onclick="limpa()">Limpar</button><br>
+
+        <!--Mult-->
+        <input id="samult" placeholder="valor a">
+        <input id="sbmult" placeholder="valor b">
+        <button onclick="mult()">*</button>
+        <input id="srmult">
+        <button onclick="limpa()">Limpar</button><br>
+
+        <!--Div-->
+        <input id="sadiv" placeholder="valor a">
+        <input id="sbdiv" placeholder="valor b">
+        <button onclick="div()">/</button>
+        <input id="srdiv">
+        <button onclick="limpa()">Limpar</button><br>
+
+        <script>
+            function soma(){
+                var va = document.querySelector("#sa").value;
+                var vb = document.querySelector("#sb").value;
+                var resultado = parseInt(va) + parseInt(vb);
+                document.querySelector("#sr").value = resultado;
+            }
+
+            function sub(){
+                var va = document.querySelector("#sasub").value;
+                var vb = document.querySelector("#sbsub").value;
+                var resultado = parseInt(va) - parseInt(vb);
+                document.querySelector("#srsub").value = resultado;
+            }
+
+            function mult(){
+                var va = document.querySelector("#samult").value;
+                var vb = document.querySelector("#sbmult").value;
+                var resultado = parseInt(va) * parseInt(vb);
+                document.querySelector("#srmult").value = resultado;
+            }
+
+            function div(){
+                var va = document.querySelector("#sadiv").value;
+                var vb = document.querySelector("#sbdiv").value;
+                var resultado = parseFloat(va) /  parseFloat(vb);
+                document.querySelector("#srdiv").value = resultado;
+            }
+
+            function limpa(){
+                document.querySelector("#sa").value = "";
+                document.querySelector("#sb").value = "";
+                
+                document.querySelector("#sasub").value = "";
+                document.querySelector("#sbsub").value = "";
+
+                document.querySelector("#samult").value = "";
+                document.querySelector("#sbmult").value = "";
+
+                document.querySelector("#sadiv").value = "";
+                document.querySelector("#sbdiv").value = "";
+
+
+
+                document.querySelector("#sr").value = "";
+                document.querySelector("#srsub").value = "";
+                document.querySelector("#srmult").value = "";
+                document.querySelector("#srdiv").value = "";
+            }
+        </script>
+    </body>
+</html>
