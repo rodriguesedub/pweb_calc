@@ -14,6 +14,7 @@
                 height: 37px;
                 font-size: 14px;
                 color: white;
+                border: #ccc;
             }
 
             .buttonLimp {
@@ -29,40 +30,138 @@
                 background-color: white;
                 width: 10em;
                 height: 37px;
+                border: #ccc;
+            }
+
+            .botoes button.operadores{
+                background-color: blue;
+                color: white;
+            }
+
+            .botoes button.ca{
+                color: white;
+                background-color: red;
+            }
+
+            .botoes{
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 5px;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: white;
+            }
+
+            .botoes button {
+                background-color: brown;
+                width: 37px;
+                height: 37px;
+                font-size: 14px;
+                border-radius: 10px;
+                color: white;
+                border: 1px solid #ccc;
+            }
+
+            .calculadora {
+                width: fit-content;
+                padding: 10px;
+                border: 5px solid grey;
+                border-radius: 10px;
+                background: #eee;
+            }
+
+            .botoes button.ca:hover{
+                background-color: #ff9292;
+            }
+            .botoes button:hover{
+                background-color: #ff7253;
+            }
+            .botoes button.operadores:hover{
+                background-color: #8686ff;
             }
         </style>
     </head>
 
     <body>
+        <!--Calculadora de botao-->
+        <div class="calculadora">
+            <input type="text" id="display" disabled>
+            <div class="botoes">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button class="operadores">/</button>
+
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button class="operadores">*</button>
+
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="operadores">-</button>
+
+                <button>0</button>
+                <button class="ca">CA</button>
+                <button class="operadores">=</button>
+                <button class="operadores">+</button>
+            </div>
+        </div>
+
+        <br>
+
+        <!--Calculadora de linha-->
         <!--Soma-->
-        <input id="sa" placeholder="valor a">
-        <input id="sb" placeholder="valor b">
+        <input class="inputc" id="sa" placeholder="">
+        <input class="inputc" id="sb" placeholder="">
         <button onclick="soma()">+</button>
-        <input id="sr">
-        <button onclick="limpa()">Limpar</button><br>
+        <input class="resq" id="sr">
+        <button class="buttonLimp" onclick="limpaSoma()">Limpar</button><br>
 
         <!--Sub-->
-        <input id="sasub" placeholder="valor a">
-        <input id="sbsub" placeholder="valor b">
+        <input class="inputc" id="sasub" placeholder="">
+        <input class="inputc" id="sbsub" placeholder="">
         <button onclick="sub()">-</button>
-        <input id="srsub">
-        <button onclick="limpa()">Limpar</button><br>
+        <input class="resq" id="srsub">
+        <button class="buttonLimp" onclick="limpaSub()">Limpar</button><br>
 
         <!--Mult-->
-        <input id="samult" placeholder="valor a">
-        <input id="sbmult" placeholder="valor b">
+        <input class="inputc" id="samult" placeholder="">
+        <input class="inputc" id="sbmult" placeholder="">
         <button onclick="mult()">*</button>
-        <input id="srmult">
-        <button onclick="limpa()">Limpar</button><br>
+        <input class="resq" id="srmult">
+        <button class="buttonLimp" onclick="limpaMult()">Limpar</button><br>
 
         <!--Div-->
-        <input id="sadiv" placeholder="valor a">
-        <input id="sbdiv" placeholder="valor b">
+        <input class="inputc" id="sadiv" placeholder="">
+        <input class="inputc" id="sbdiv" placeholder="">
         <button onclick="div()">/</button>
-        <input id="srdiv">
-        <button onclick="limpa()">Limpar</button><br>
+        <input class="resq" id="srdiv">
+        <button class="buttonLimp" onclick="limpaDiv()">Limpar</button><br>
 
         <script>
+            const display = document.querySelector("#display");
+            const botoes = document.querySelectorAll(".botoes button");
+
+            botoes.forEach(botao => {
+                botao.addEventListener("click", () => {
+                    const valor = botao.textContent;
+
+                    if(valor === "CA") {
+                        display.value = "";
+                    } else if(valor === "=") {
+                        try {
+                            display.value = eval(display.value);
+                        } catch {
+                            display.value = "Erro"; 
+                        }
+                    } else {
+                        display.value += valor; 
+                    }
+                });
+            });
+
             function soma(){
                 var va = document.querySelector("#sa").value;
                 var vb = document.querySelector("#sb").value;
@@ -91,26 +190,31 @@
                 document.querySelector("#srdiv").value = resultado;
             }
 
-            function limpa(){
+            function limpaSoma(){
                 document.querySelector("#sa").value = "";
                 document.querySelector("#sb").value = "";
-                
+                document.querySelector("#sr").value = "";                
+            }
+
+            function limpaSub(){
                 document.querySelector("#sasub").value = "";
                 document.querySelector("#sbsub").value = "";
-
+                document.querySelector("#srsub").value = "";
+            }
+                
+            function limpaMult(){
                 document.querySelector("#samult").value = "";
                 document.querySelector("#sbmult").value = "";
-
-                document.querySelector("#sadiv").value = "";
-                document.querySelector("#sbdiv").value = "";
-
-
-
-                document.querySelector("#sr").value = "";
-                document.querySelector("#srsub").value = "";
                 document.querySelector("#srmult").value = "";
+            }
+
+            function limpaDiv(){
+                document.querySelector("#sadiv").value = "";
+                document.querySelector("#sbdiv").value = "";    
                 document.querySelector("#srdiv").value = "";
             }
+
+            
         </script>
     </body>
 </html>
